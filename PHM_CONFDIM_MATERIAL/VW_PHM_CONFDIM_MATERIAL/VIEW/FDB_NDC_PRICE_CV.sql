@@ -1,0 +1,22 @@
+CREATE VIEW `PROJECT_ID.VW_PHM_CONFDIM_MATERIAL.FDB_NDC_PRICE_CV`(
+  NDC OPTIONS(description="National Drug Code"),
+  PRICE_TYPE OPTIONS(description="Price Type"),
+  PRICE_TYPE_DESCRIPTION OPTIONS(description="Price Type Description"),
+  PRICE OPTIONS(description="Price"),
+  PRICE_EFFECTIVE_DT OPTIONS(description="Price Effective Date"),
+  ROW_ADD_STP OPTIONS(description="Row Add Timestamp"),
+  ROW_ADD_USER_ID OPTIONS(description="Row Add User ID"),
+  ROW_UPDATE_STP OPTIONS(description="Row Update Timestamp"),
+  ROW_UPDATE_USER_ID OPTIONS(description="Row Update User ID")
+)
+AS SELECT
+NDC AS NDC,
+PRICE_TYPE,
+PRICE_TYPE_DESCRIPTION,
+PRICE,
+PRICE_EFFECTIVE_DT,
+ROW_ADD_STP,
+ROW_ADD_USER_ID,
+ROW_UPDATE_STP,
+ROW_UPDATE_USER_ID
+FROM `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.FDB_NDC_PRICE_CV`;

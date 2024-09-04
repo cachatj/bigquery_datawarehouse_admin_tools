@@ -1,0 +1,124 @@
+CREATE VIEW `PROJECT_ID.VW_PHM_CONFFACT_PRICING.VW_WAC_DATA`(
+  national_drug_code,
+  new_awp,
+  new_corp_nifo,
+  new_cost_plus,
+  new_base_cost,
+  new_additional_charge,
+  effective_date,
+  activity_status_code,
+  activity_description,
+  generic_indicator_code,
+  cardinal_substitution_key,
+  cardinal_gcn_code,
+  corporate_item_number,
+  hamacher_department_number,
+  hamacher_description,
+  form_id,
+  form_description,
+  multi_source_indicator_code,
+  package_quantity,
+  Accunet_Size,
+  package_size_unit,
+  package_size_description,
+  unit_code,
+  Unit_Code_Desc,
+  Private_Label_Code,
+  Private_Label_Desc,
+  Package_Size,
+  Strength,
+  Total_Quantity,
+  Trade_Name,
+  Unit_Dose,
+  Unit_Dose_Desc,
+  DRUG_GROUP_ID,
+  DESC_TXT,
+  Vendor_Number,
+  Vendor_Name,
+  DEA_Schedule_Number,
+  deaSchedDesc,
+  Item_Type_Code,
+  Item_Type_Code_Description,
+  Department_Code,
+  department_description,
+  caseQty,
+  ahfs_description,
+  route_administration,
+  minPackQty,
+  generic_name,
+  orange_book_code,
+  hicl_seq_number,
+  hicl,
+  totalCaseQty,
+  recordDate,
+  rxIndicator,
+  prItem,
+  materialType,
+  materialGroup,
+  materialPackageGroup,
+  materialGroupCategory,
+  VIZIENT_ITM,
+  PREMIERPRORX_ITM
+)
+AS SELECT
+national_drug_code
+,new_awp
+,new_corp_nifo
+,new_cost_plus
+,new_base_cost
+,new_additional_charge
+,effective_date
+,activity_status_code
+,activity_description
+,generic_indicator_code
+,cardinal_substitution_key
+,cardinal_gcn_code
+,corporate_item_number
+,hamacher_department_number
+,hamacher_description
+,form_id
+,form_description
+,multi_source_indicator_code
+,package_quantity
+,Accunet_Size
+,package_size_unit
+,package_size_description
+,unit_code
+,Unit_Code_Desc
+,Private_Label_Code
+,Private_Label_Desc
+,Package_Size
+,Strength
+,Total_Quantity
+,Trade_Name
+,Unit_Dose
+,Unit_Dose_Desc
+,DRUG_GROUP_ID
+,DESC_TXT
+,Vendor_Number
+,Vendor_Name
+,DEA_Schedule_Number
+,deaSchedDesc
+,Item_Type_Code
+,Item_Type_Code_Description
+,Department_Code
+,department_description
+,caseQty
+,ahfs_description
+,route_administration
+,minPackQty
+,generic_name
+,orange_book_code
+,hicl_seq_number
+,hicl
+,totalCaseQty
+,recordDate
+,rxIndicator
+,prItem
+,materialType
+,materialGroup
+,materialPackageGroup
+,materialGroupCategory
+,VIZIENT_ITM
+,PREMIERPRORX_ITM
+ FROM `PROJECT_ID.D2_PHM_CONFFACT_PRICING.WAC_DATA`;

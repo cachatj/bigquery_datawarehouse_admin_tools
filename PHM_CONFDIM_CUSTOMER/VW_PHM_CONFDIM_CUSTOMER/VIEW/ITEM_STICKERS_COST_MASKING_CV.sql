@@ -1,0 +1,16 @@
+CREATE VIEW `PROJECT_ID.VW_PHM_CONFDIM_CUSTOMER.ITEM_STICKERS_COST_MASKING_CV`(
+  ITEM_STICKERS_COST_MASKING_ID OPTIONS(description="Item Stickers Cost Masking ID"),
+  ITEM_STICKERS_COST_MASKING_DESC_TXT OPTIONS(description="Item Stickers Cost Masking Description Text"),
+  ROW_ADD_STP OPTIONS(description="Indicates date the row was inserted"),
+  ROW_ADD_USER_ID OPTIONS(description="Indicates by which job the row was inserted"),
+  ROW_UPDATE_STP OPTIONS(description="Indicates date the row was updated"),
+  ROW_UPDATE_USER_ID OPTIONS(description="Indicates by which job the row was updated")
+)
+AS SELECT
+ YYCUSMASK_YTSD_CUSMASK_TXT     AS     ITEM_STICKERS_COST_MASKING_ID
+,YYCUSMASK_DES_YTSD_CUSMASK_TXT     AS     ITEM_STICKERS_COST_MASKING_DESC_TXT
+,ROW_ADD_STP     AS     ROW_ADD_STP
+,ROW_ADD_USER_ID     AS     ROW_ADD_USER_ID
+,ROW_UPDATE_STP     AS     ROW_UPDATE_STP
+,ROW_UPDATE_USER_ID     AS     ROW_UPDATE_USER_ID
+FROM `PROJECT_ID.D1_PHM_CONFDIM_CUSTOMER.ITEM_STICKERS_COST_MASKING_CV`;

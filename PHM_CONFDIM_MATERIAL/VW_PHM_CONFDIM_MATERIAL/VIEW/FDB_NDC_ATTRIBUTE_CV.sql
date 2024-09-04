@@ -1,0 +1,25 @@
+CREATE VIEW `PROJECT_ID.VW_PHM_CONFDIM_MATERIAL.FDB_NDC_ATTRIBUTE_CV`(
+  NDC OPTIONS(description="National Drug Code"),
+  NDC_ATTRIBUTE_TYPE_CD OPTIONS(description="NDC Attribute Type Code"),
+  NDC_ATTRIBUTE_TYPE_DSC OPTIONS(description="NDC Attribute Type Code Description"),
+  NDC_ATTRIBUTE_SN OPTIONS(description="NDC Attribute Sequence Number"),
+  NDC_ATTRIBUTE_VALUE OPTIONS(description="NDC Attribute Value"),
+  NDC_ATTRIBUTE_VALUE_DESC OPTIONS(description="NDC Attribute Value Description"),
+  ROW_ADD_STP OPTIONS(description="Row Add Timestamp"),
+  ROW_ADD_USER_ID OPTIONS(description="Row Add User ID"),
+  ROW_UPDATE_STP OPTIONS(description="Row Update Timestamp"),
+  ROW_UPDATE_USER_ID OPTIONS(description="Row Update User ID")
+)
+AS SELECT
+ NDC,
+  NDC_ATTRIBUTE_TYPE_CD,
+  NDC_ATTRIBUTE_TYPE_DSC,
+  NDC_ATTRIBUTE_SN,
+  NDC_ATTRIBUTE_VALUE,
+  NDC_ATTRIBUTE_VALUE_DESC,
+  ROW_ADD_STP,
+ROW_ADD_USER_ID,
+	ROW_UPDATE_STP,
+	ROW_UPDATE_USER_ID
+
+FROM `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.FDB_NDC_ATTRIBUTE_CV`;

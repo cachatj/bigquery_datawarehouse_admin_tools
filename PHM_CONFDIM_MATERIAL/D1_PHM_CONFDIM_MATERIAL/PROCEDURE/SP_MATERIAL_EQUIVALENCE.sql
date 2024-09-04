@@ -1,0 +1,53 @@
+CREATE PROCEDURE `PROJECT_ID`.D1_PHM_CONFDIM_MATERIAL.SP_MATERIAL_EQUIVALENCE()
+BEGIN
+
+/***********************************************************************************************************************
+Author: Debapriya Banerjee
+Creation Date: 09/29/2023
+Data Sources:	PROJECT_ID.VI2_PHM_CONFDIM_MATERIAL.PHM_ORP_PE1_PH1__YTMM_EQV_ITEM_CV
+				PROJECT_ID.VI2_PHM_CONFDIM_MATERIAL.PHM_ORP_PE1_PH1__YTMM_EQVTYP_T_CV
+				PROJECT_ID.VI2_PHM_CONFDIM_MATERIAL.PHM_ORP_PE1_PH1__MAKT_CV
+*************************************************************************************************************************
+Change History		[DATE]			[CHANGED BY]	[JIRA#]		[CODE REVIEW BY]		[DESCRIPTION]
+	<#>					<MM/DD/YYYY>	<Name>			<ID>
+
+************************************************************************************************************************/
+
+DECLARE v_start_time datetime;
+DECLARE v_start_stp timestamp;
+DECLARE v_end_stp timestamp;
+DECLARE v_stored_proc_name string;
+
+SET v_start_time = current_datetime();
+SET v_start_stp = CURRENT_TIMESTAMP;
+SET v_end_stp = (SELECT CAST('9999-12-31 23:59:59' AS TIMESTAMP));
+SET v_stored_proc_name = 'D1_PHM_CONFDIM_MATERIAL.SP_MATERIAL_EQUIVALENCE';
+
+-- MATERIAL_EQUIVALENCE_CV will be truncated and loaded daily with the rest of the Material objects
+
+-- Truncate MATERIAL_EQUIVALENCE_CV
+
+TRUNCATE TABLE `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.MATERIAL_EQUIVALENCE_CV`;
+
+-- Insert into MATERIAL_EQUIVALENCE_CV
+
+INSERT INTO `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.MATERIAL_EQUIVALENCE_CV`
+SELECT DISTINCT
+   EQV.MATNR								AS MATNR_YTMM_EQV_ITEM,
+   IFNULL(MAKT_MAT.MAKTX, 'NOT_AVAILABLE')	AS MAKTX_MAKT,
+   EQV.YYEQVNUM								AS YYEQVNUM_YTMM_EQV_ITEM,
+   IFNULL(MAKT_EQV.MAKTX, 'NOT_AVAILABLE')	AS MAKTX_MAKT_EQV,
+   SAFE_CAST(EQV.YYEQVTYP AS INT64) AS YYEQVTYP_YTMM_EQV_ITEM,
+	IFNULL(EQV_D.YYDESC, 'NOT_AVAILABLE') 	AS YYDESC_YTMM_EQVTYP_T,
+   v_start_stp 								AS ROW_ADD_STP,
+   v_stored_proc_name						AS ROW_ADD_USER_ID,
+   v_start_stp 								AS ROW_UPDATE_STP,
+   v_stored_proc_name						AS ROW_UPDATE_USER_ID
+FROM
+`PROJECT_ID.VI2_PHM_CONFDIM_MATERIAL.PHM_ORP_PE1_PH1__YTMM_EQV_ITEM_CV` EQV
+	LEFT JOIN `PROJECT_ID.VI2_PHM_CONFDIM_MATERIAL.PHM_ORP_PE1_PH1__MAKT_CV` MAKT_MAT ON EQV.MATNR = MAKT_MAT.MATNR AND MAKT_MAT.SPRAS = 'E'
+	LEFT JOIN `PROJECT_ID.VI2_PHM_CONFDIM_MATERIAL.PHM_ORP_PE1_PH1__MAKT_CV` MAKT_EQV ON EQV.YYEQVNUM = MAKT_EQV.MATNR AND MAKT_EQV.SPRAS = 'E'
+	LEFT JOIN `PROJECT_ID.VI2_PHM_CONFDIM_MATERIAL.PHM_ORP_PE1_PH1__YTMM_EQVTYP_T_CV` EQV_D ON EQV.YYEQVTYP = EQV_D.YYEQVTYP AND EQV_D.SPRAS = 'E'
+;
+
+END;

@@ -1,0 +1,11 @@
+CREATE TABLE `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.SALES_TAX_DRIVER_CV`
+(
+  ZZMTAXD_ZMT_PTS_TAX_DRVR STRING OPTIONS(description="Sales Tax Driver ID"),
+  ZZTAXGC_ZMT_PTS_TAX_DRVR STRING OPTIONS(description="Tax Group Code"),
+  DESCRIPTION_ZMT_PTS_TAX_DRVR STRING OPTIONS(description="Sales Tax Driver Description Text"),
+  ROW_ADD_STP TIMESTAMP OPTIONS(description="Row Add Timestamp"),
+  ROW_ADD_USER_ID STRING OPTIONS(description="Row Add User ID"),
+  ROW_UPDATE_STP TIMESTAMP OPTIONS(description="Row Update Timestamp"),
+  ROW_UPDATE_USER_ID STRING OPTIONS(description="Row Update User ID")
+)
+CLUSTER BY ZZMTAXD_ZMT_PTS_TAX_DRVR;

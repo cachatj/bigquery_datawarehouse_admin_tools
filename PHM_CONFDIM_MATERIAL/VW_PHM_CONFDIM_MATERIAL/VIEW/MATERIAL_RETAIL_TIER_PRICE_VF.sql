@@ -1,0 +1,36 @@
+CREATE VIEW `PROJECT_ID.VW_PHM_CONFDIM_MATERIAL.MATERIAL_RETAIL_TIER_PRICE_VF`(
+  MTRL_NUM OPTIONS(description="Material Number"),
+  SALE_ORG_ID OPTIONS(description="Sales Organization ID"),
+  DIST_CHNL_ID OPTIONS(description="Distribution Channel ID"),
+  DIV_ID OPTIONS(description="Division ID"),
+  RETAIL_PRICE_TIER_ID OPTIONS(description="Retail Price Tier ID"),
+  RETAIL_PRICE_TIER_DESC_TXT OPTIONS(description="Retail Price Tier Description Text"),
+  VRSN_START_DTE OPTIONS(description="Version Start Date"),
+  VRSN_END_DTE OPTIONS(description="Version End Date"),
+  CURR_VRSN_FLG OPTIONS(description="Current Version Flag"),
+  RETAIL_TIER_PRICE_AMT OPTIONS(description="Retail Tier Price Amount"),
+  ROW_ADD_STP OPTIONS(description="Row Added Timestamp"),
+  ROW_ADD_USER_ID OPTIONS(description="Row Added User ID"),
+  ROW_UPDATE_STP OPTIONS(description="Row Update Timestamp"),
+  ROW_UPDATE_USER_ID OPTIONS(description="Row Update User ID")
+)
+OPTIONS(
+  description=""
+)
+AS SELECT
+	MATNR_A714						AS MTRL_NUM,
+	VKORG_A714						AS SALE_ORG_ID,
+	VTWEG_A714						AS DIST_CHNL_ID,
+	SPART_A714						AS DIV_ID,
+	YYRPRPT_A714					AS RETAIL_PRICE_TIER_ID,
+	YYRPRPT_DESC_YTSD_HAMACHER_ZL	AS RETAIL_PRICE_TIER_DESC_TXT,
+	DATAB_A714						AS VRSN_START_DTE,
+	DATBI_A714						AS VRSN_END_DTE,
+	CURR_VRSN_FLG					AS CURR_VRSN_FLG,
+	KBETR_KONP						AS RETAIL_TIER_PRICE_AMT,
+	ROW_ADD_STP						AS ROW_ADD_STP,
+	ROW_ADD_USER_ID					AS ROW_ADD_USER_ID,
+	ROW_UPDATE_STP					AS ROW_UPDATE_STP,
+	ROW_UPDATE_USER_ID				AS ROW_UPDATE_USER_ID
+FROM
+   PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.MATERIAL_RETAIL_TIER_PRICE_VF;

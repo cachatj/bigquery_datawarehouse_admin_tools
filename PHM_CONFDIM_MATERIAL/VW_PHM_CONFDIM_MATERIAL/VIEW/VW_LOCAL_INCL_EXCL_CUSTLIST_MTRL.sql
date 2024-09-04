@@ -1,0 +1,36 @@
+CREATE VIEW `PROJECT_ID.VW_PHM_CONFDIM_MATERIAL.VW_LOCAL_INCL_EXCL_CUSTLIST_MTRL`(
+  SALE_ORG_ID OPTIONS(description="Sales Organization"),
+  SALE_ORG_DESC_TXT OPTIONS(description="Sales Organization Description Text"),
+  DIST_CHNL_ID OPTIONS(description="Distribute Channel"),
+  DIST_CHNL_DESC_TXT OPTIONS(description="Distribution Channel Description Text"),
+  DIV_ID OPTIONS(description="Division"),
+  DIV_DESC_TXT OPTIONS(description="Division Description Text"),
+  CNTRCT_NUM_ID OPTIONS(description="Contract Number"),
+  MTRL_NUM_ID OPTIONS(description="Material Number"),
+  VRSN_START_DTE OPTIONS(description="Version Start Date"),
+  VRSN_END_DTE OPTIONS(description="Version End Date"),
+  CURR_VRSN_FLG OPTIONS(description="Current Version Flag"),
+  ROW_ADD_STP OPTIONS(description="Row Added Timestamp"),
+  ROW_ADD_USER_ID OPTIONS(description="Row Added By User"),
+  ROW_UPDATE_STP OPTIONS(description="Row Updated Timestamp"),
+  ROW_UPDATE_USER_ID OPTIONS(description="Row Updated By User")
+)
+AS SELECT
+  DISTINCT
+YYVKORG_KOTG753 AS SALE_ORG_ID
+,YYVTEXT_TVKOT AS SALE_ORG_DESC_TXT
+,YYVTWEG_KOTG753 AS DIST_CHNL_ID
+,YYVTEXT_TVTWT AS DIST_CHNL_DESC_TXT
+,SPART_KOTG753 AS DIV_ID
+,VTEXT_TSPAT AS DIV_DESC_TXT
+,IRM_CLNUM_KOTG753 AS CNTRCT_NUM_ID
+,MATNR_KOTG753 AS MTRL_NUM_ID
+,DATAB_KOTG753 AS VRSN_START_DTE
+,DATBI_KOTG753 AS VRSN_END_DTE
+,CURR_VRSN_FLG AS CURR_VRSN_FLG
+,ROW_ADD_STP
+,ROW_ADD_USER_ID
+,ROW_UPDATE_STP
+,ROW_UPDATE_USER_ID
+
+FROM `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.LOCAL_INCL_EXCL_CUSTLIST_MTRL`;

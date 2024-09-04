@@ -1,0 +1,6 @@
+CREATE TABLE `PROJECT_ID.D1_PHM_CONFDIM_CUSTOMER.BUSINESSACTIVITY`
+(
+  string_field_0 STRING,
+  string_field_1 STRING,
+  string_field_2 STRING
+);

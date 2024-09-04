@@ -1,0 +1,57 @@
+CREATE VIEW `PROJECT_ID.VW_PHM_CONFFACT_PRICING.VW_GRP_CURPRC`(
+  group_number,
+  group_name,
+  group_type_id,
+  contract_description,
+  group_reference,
+  contract_number,
+  contract_effective_year,
+  contract_effective_month,
+  contract_effective_date,
+  contract_term_year,
+  contract_term_month,
+  contract_term_date,
+  vendor_number,
+  vendor_name,
+  parent_vendor_number,
+  parent_vendor_name,
+  corporate_item_number,
+  corporate_description,
+  national_drug_code,
+  contract_cost,
+  contract_sell,
+  parent_affiliation_id,
+  parent_affiliation,
+  vendor_reference,
+  item_effective_date,
+  record_effective_date
+)
+AS SELECT
+group_number
+,group_name
+,group_type_id
+,contract_description
+,group_reference
+,contract_number
+,contract_effective_year
+,contract_effective_month
+,contract_effective_date
+,contract_term_year
+,contract_term_month
+,contract_term_date
+,vendor_number
+,vendor_name
+,parent_vendor_number
+,parent_vendor_name
+,corporate_item_number
+,corporate_description
+,national_drug_code
+,contract_cost
+,contract_sell
+,parent_affiliation_id
+,parent_affiliation
+,vendor_reference
+,item_effective_date
+,record_effective_date
+
+ FROM `PROJECT_ID.D2_PHM_CONFFACT_PRICING.GRP_CURPRC`;

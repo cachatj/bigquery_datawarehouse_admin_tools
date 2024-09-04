@@ -1,0 +1,57 @@
+CREATE PROCEDURE `PROJECT_ID`.D1_PHM_CONFDIM_MATERIAL.SP_MATERIAL_CLASS_RLT()
+BEGIN
+
+/***********************************************************************************************************************
+Author: Gopalakrishnan Thangavel
+Creation Date: 03/12/2024
+Data Sources:
+
+*************************************************************************
+Change History		[DATE]			[CHANGED BY]	[JIRA#]		[CODE REVIEW BY]		[DESCRIPTION]
+	<#>					<MM/DD/YYYY>	<Name>			<ID>
+
+************************************************************************************************************************/
+
+DECLARE v_start_stp timestamp;
+DECLARE v_end_stp timestamp;
+DECLARE v_stored_proc_name string;
+
+SET v_start_stp = CURRENT_TIMESTAMP;
+SET v_end_stp = (SELECT CAST('9999-12-31 23:59:59' AS TIMESTAMP));
+SET v_stored_proc_name = 'D1_PHM_CONFDIM_MATERIAL.SP_MATERIAL_CLASS_RLT';
+
+CREATE OR REPLACE TEMPORARY TABLE AUSP_INOB_TEMP
+AS
+SELECT
+ATINN,
+ATWRT,
+INOB.OBJEK
+FROM `PROJECT_ID.VI2_PHM_CONFDIM_MATERIAL.PHM_ORP_PE1_PH1__AUSP_CV` AUSP
+INNER JOIN `PROJECT_ID.VI2_PHM_CONFDIM_MATERIAL.PHM_ORP_PE1_PH1__INOB_CV` INOB
+ON AUSP.OBJEK = INOB.CUOBJ AND AUSP.KLART = INOB.KLART
+WHERE AUSP.ATINN IN (
+  '0000000072','0000000073'
+)
+AND
+AUSP.KLART = '001' AND INOB.OBTAB = 'MARA'
+ORDER BY 1
+;
+
+TRUNCATE TABLE `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.MATERIAL_CLASS_RLT_CV`;
+
+INSERT INTO `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.MATERIAL_CLASS_RLT_CV`
+SELECT
+	OBJEK AS MATNR,
+	CASE WHEN ATINN = '0000000072' THEN 'DOCUMENTS_MISSING'
+		WHEN ATINN = '0000000073' THEN 'DUPLICATE_MATERIAL'
+		ELSE
+		'NOT_AVAILABLE' END AS CALC_CLASS_TYPE_ID,
+	ATWRT AS CALC_CLASS_CRCTRSTC_VALUE_ID,
+	v_start_stp AS ROW_ADD_STP,
+	v_stored_proc_name AS ROW_ADD_USER_ID,
+	v_start_stp AS ROW_UPDATE_STP,
+	v_stored_proc_name AS ROW_UPDATE_USER_ID
+
+FROM AUSP_INOB_TEMP;
+
+END;

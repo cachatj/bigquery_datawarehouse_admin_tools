@@ -1,0 +1,41 @@
+CREATE VIEW `PROJECT_ID.VW_PHM_CONFDIM_MATERIAL.FDB_DRUG_IMPRINTS_CV`(
+  NDC OPTIONS(description="National Drug Code"),
+  IPTUNIQID OPTIONS(description="Imprint Unique Drug ID"),
+  IPTDFID OPTIONS(description="Imprint Dosage Form ID"),
+  IPTMFGID OPTIONS(description="Imprint Manufacturer ID"),
+  IPTMFGNAME OPTIONS(description="Imprint Manufacturer Name"),
+  IPTDFDESC OPTIONS(description="Imprint Dosage Form Description"),
+  IPTPROPID OPTIONS(description="Imprint Property ID"),
+  IPTLBLID OPTIONS(description="Imprint Label ID"),
+  IPTSIDE1 OPTIONS(description="Imprint Side 1"),
+  IPTSIDE2 OPTIONS(description="Imprint Side 2"),
+  IPTTEXTID OPTIONS(description="Imprint Text ID"),
+  IPTLINENO OPTIONS(description="Imprint Line Number"),
+  IPTTEXT OPTIONS(description="Imprint Text"),
+  CHG_FLAG OPTIONS(description="RNDC14_NDC_MSTR Change Flag"),
+  ROW_ADD_STP OPTIONS(description="Row Add Timestamp"),
+  ROW_ADD_USER_ID OPTIONS(description="Row Add User ID"),
+  ROW_UPDATE_STP OPTIONS(description="Row Update Timestamp"),
+  ROW_UPDATE_USER_ID OPTIONS(description="Row Update User ID")
+)
+AS SELECT
+NDC,
+  IPTUNIQID,
+  IPTDFID,
+  IPTMFGID,
+  IPTMFGNAME,
+  IPTDFDESC,
+  IPTPROPID,
+  IPTLBLID,
+  IPTSIDE1,
+  IPTSIDE2,
+  IPTTEXTID,
+  IPTLINENO,
+  IPTTEXT,
+  CHG_FLAG,
+  ROW_ADD_STP,
+	ROW_ADD_USER_ID,
+	ROW_UPDATE_STP,
+	ROW_UPDATE_USER_ID
+
+FROM `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.FDB_DRUG_IMPRINTS_CV`;

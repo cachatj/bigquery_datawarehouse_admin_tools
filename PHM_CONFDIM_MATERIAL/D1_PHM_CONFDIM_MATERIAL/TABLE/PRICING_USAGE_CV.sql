@@ -1,0 +1,10 @@
+CREATE TABLE `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.PRICING_USAGE_CV`
+(
+  YYPRIU_YTMM_PRIU_T STRING OPTIONS(description="Pricing Usage ID; YTMM_PRIU_T.YYPRIU where YTMM_PRIU_T.SPRAS = E"),
+  YYDESC_YTMM_PRIU_T STRING OPTIONS(description="Pricing Usage Description Text"),
+  ROW_ADD_STP TIMESTAMP OPTIONS(description="Row Add Timestamp"),
+  ROW_ADD_USER_ID STRING OPTIONS(description="Row Add User ID"),
+  ROW_UPDATE_STP TIMESTAMP OPTIONS(description="Row Update Timestamp"),
+  ROW_UPDATE_USER_ID STRING OPTIONS(description="Row Update User ID")
+)
+CLUSTER BY YYPRIU_YTMM_PRIU_T;

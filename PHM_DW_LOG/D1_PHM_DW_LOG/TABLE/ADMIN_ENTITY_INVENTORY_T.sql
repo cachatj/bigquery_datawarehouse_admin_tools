@@ -1,0 +1,25 @@
+CREATE TABLE `PROJECT_ID.D1_PHM_DW_LOG.ADMIN_ENTITY_INVENTORY_T`
+(
+  snapshot_date DATE,
+  snapshot_timestamp TIMESTAMP,
+  entity_catalog STRING,
+  schema_name_group STRING,
+  dataset_group STRING,
+  dataset_group_ad_np STRING,
+  entity_schema STRING,
+  entity_name STRING,
+  entity_type STRING,
+  entity_ddl STRING,
+  create_date DATE,
+  last_modify_date DATE,
+  days_since_last_modify INT64,
+  days_since_create_date INT64,
+  total_rows INT64,
+  drop_entity_sql STRING,
+  pdw_flag BOOL,
+  dag_name STRING,
+  task_name STRING,
+  dag_last_run_date DATE,
+  dag_last_run_success_date DATE,
+  dag_status STRING
+);

@@ -1,0 +1,16 @@
+CREATE VIEW `PROJECT_ID.VW_PHM_CONFDIM_CUSTOMER.CUSTOMER_STOREFRONT_CV`(
+  CUSTOMER_STOREFRONT_ID OPTIONS(description="Customer Storefront ID"),
+  CUSTOMER_STOREFRONT_DESC_TXT OPTIONS(description="Customer Storefront Description Text"),
+  ROW_ADD_STP OPTIONS(description="Indicates date the row was inserted"),
+  ROW_ADD_USER_ID OPTIONS(description="Indicates by which job the row was inserted"),
+  ROW_UPDATE_STP OPTIONS(description="Indicates date the row was updated"),
+  ROW_UPDATE_USER_ID OPTIONS(description="Indicates by which job the row was updated")
+)
+AS SELECT
+ YYSTOREFRONT_YTSD_STORFRNTTXT     AS     CUSTOMER_STOREFRONT_ID
+,YYSTOREFRONT_DES_YTSD_STORFRNTTXT     AS     CUSTOMER_STOREFRONT_DESC_TXT
+,ROW_ADD_STP     AS     ROW_ADD_STP
+,ROW_ADD_USER_ID     AS     ROW_ADD_USER_ID
+,ROW_UPDATE_STP     AS     ROW_UPDATE_STP
+,ROW_UPDATE_USER_ID     AS     ROW_UPDATE_USER_ID
+FROM `PROJECT_ID.D1_PHM_CONFDIM_CUSTOMER.CUSTOMER_STOREFRONT_CV`;

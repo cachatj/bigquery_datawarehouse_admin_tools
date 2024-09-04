@@ -1,0 +1,114 @@
+
+    CREATE PROCEDURE  `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.SP_MATERIAL_PLANT_RLT_CV_DELTA_LOAD`()
+    BEGIN
+    /***********************************************************************************************************************
+
+    Author: <Automatically Written Using Code Generator>
+    Creation Date: <Insert Date>
+    Sproc Purpose: Delta Loading Merge Sproc for MATERIAL_PLANT_RLT_CV
+    Data Sources:  See SQL Below
+
+    ************************************************************************************************************************/
+    DECLARE v_start_time timestamp;
+    DECLARE v_start_stp timestamp;
+    DECLARE v_end_stp timestamp;
+    DECLARE v_stored_proc_name STRING;
+    DECLARE last_load_timestamp timestamp;
+
+    SET v_start_time = current_timestamp();
+    SET v_start_stp = current_timestamp();
+    SET v_end_stp = (SELECT CAST('9999-12-31 23:59:59' AS TIMESTAMP));
+    SET v_stored_proc_name = 'D1_PHM_CONFDIM_MATERIAL.MATERIAL_PLANT_RLT_CV_DELTA_LOAD';
+    SET last_load_timestamp = (SELECT MAX(ROW_ADD_STP) FROM `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.MATERIAL_PLANT_RLT_CV`);
+
+
+    MERGE INTO  `PROJECT_ID.D1_PHM_CONFDIM_MATERIAL.MATERIAL_PLANT_RLT_CV` AS target
+     USING 
+      (
+     -- Developer's code goes here (SAMPLE CODE BELOW)
+
+         --SELECT 
+            a.column_1
+            a.column_2
+         --FROM 
+         -- `PROJECT_ID.VI2_PHM_CONFFACT_BILLING.PHM_SDW__INVOICE_LINE_CV` il
+         --JOIN
+            --`PROJECT_ID.VI2_PHM_CONFDIM_TIME.PHM_SDW__TIME_DETAIL_CV` t
+                --ON il.DTE_KEY_NUM = t.DTE_KEY_NUM
+        --WHERE il.D0_UPDATE_STP > last_load_timestamp --- MOST IMPORTANT CONCEPT
+
+      ) AS source
+      ON TARGET.PRIMARY_KEY = SOURCE.PRIMARY_KEY
+    WHEN MATCHED THEN
+      UPDATE SET
+        TARGET.MATNR_MARC = SOURCE.MATNR_MARC,
+        TARGET.WERKS_MARC = SOURCE.WERKS_MARC,
+        TARGET.PSTAT_MARC = SOURCE.PSTAT_MARC,
+        TARGET.LVORM_MARC = SOURCE.LVORM_MARC,
+        TARGET.XCHAR_MARC = SOURCE.XCHAR_MARC,
+        TARGET.MMSTA_MARC = SOURCE.MMSTA_MARC,
+        TARGET.MMSTD_MARC = SOURCE.MMSTD_MARC,
+        TARGET.EKGRP_MARC = SOURCE.EKGRP_MARC,
+        TARGET.EKNAM_T024 = SOURCE.EKNAM_T024,
+        TARGET.DISPR_MARC = SOURCE.DISPR_MARC,
+        TARGET.DISMM_MARC = SOURCE.DISMM_MARC,
+        TARGET.XCHPF_MARC = SOURCE.XCHPF_MARC,
+        TARGET.MTVFP_MARC = SOURCE.MTVFP_MARC,
+        TARGET.BEZEI_TMVFT = SOURCE.BEZEI_TMVFT,
+        TARGET.PRCTR_MARC = SOURCE.PRCTR_MARC,
+        TARGET.ABCIN_MARC = SOURCE.ABCIN_MARC,
+        TARGET.SERNP_MARC = SOURCE.SERNP_MARC,
+        TARGET.XMCNG_MARC = SOURCE.XMCNG_MARC,
+        TARGET.CCFIX_MARC = SOURCE.CCFIX_MARC,
+        TARGET.MFRGR_MARC = SOURCE.MFRGR_MARC,
+        TARGET.LOGGR_MARC = SOURCE.LOGGR_MARC,
+        TARGET.FPRFM_MARC = SOURCE.FPRFM_MARC,
+        TARGET.LFMON_MARC = SOURCE.LFMON_MARC,
+        TARGET.LFGJA_MARC = SOURCE.LFGJA_MARC,
+        TARGET.BWESB_MARC = SOURCE.BWESB_MARC,
+        TARGET.YYNOINVENTORY_MARC = SOURCE.YYNOINVENTORY_MARC,
+        TARGET.YYCALLTO_MARC = SOURCE.YYCALLTO_MARC,
+        TARGET.YYLOTM_MARC = SOURCE.YYLOTM_MARC,
+        TARGET.ZSLTSTMP_MARC = SOURCE.ZSLTSTMP_MARC,
+        TARGET.ROW_ADD_STP = SOURCE.ROW_ADD_STP,
+        TARGET.ROW_ADD_USER_ID = SOURCE.ROW_ADD_USER_ID,
+        TARGET.ROW_UPDATE_STP = SOURCE.ROW_UPDATE_STP,
+        TARGET.ROW_UPDATE_USER_ID = SOURCE.ROW_UPDATE_USER_ID
+    WHEN NOT MATCHED THEN
+      INSERT VALUES
+      (
+        SOURCE.MATNR_MARC,
+        SOURCE.WERKS_MARC,
+        SOURCE.PSTAT_MARC,
+        SOURCE.LVORM_MARC,
+        SOURCE.XCHAR_MARC,
+        SOURCE.MMSTA_MARC,
+        SOURCE.MMSTD_MARC,
+        SOURCE.EKGRP_MARC,
+        SOURCE.EKNAM_T024,
+        SOURCE.DISPR_MARC,
+        SOURCE.DISMM_MARC,
+        SOURCE.XCHPF_MARC,
+        SOURCE.MTVFP_MARC,
+        SOURCE.BEZEI_TMVFT,
+        SOURCE.PRCTR_MARC,
+        SOURCE.ABCIN_MARC,
+        SOURCE.SERNP_MARC,
+        SOURCE.XMCNG_MARC,
+        SOURCE.CCFIX_MARC,
+        SOURCE.MFRGR_MARC,
+        SOURCE.LOGGR_MARC,
+        SOURCE.FPRFM_MARC,
+        SOURCE.LFMON_MARC,
+        SOURCE.LFGJA_MARC,
+        SOURCE.BWESB_MARC,
+        SOURCE.YYNOINVENTORY_MARC,
+        SOURCE.YYCALLTO_MARC,
+        SOURCE.YYLOTM_MARC,
+        SOURCE.ZSLTSTMP_MARC,
+        SOURCE.ROW_ADD_STP,
+        SOURCE.ROW_ADD_USER_ID,
+        SOURCE.ROW_UPDATE_STP,
+        SOURCE.ROW_UPDATE_USER_ID
+      );
+    END;
